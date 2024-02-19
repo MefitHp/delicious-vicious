@@ -7,7 +7,7 @@ var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
 };
-var __copyProps = (to, from, except, desc, all) => {
+var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
       if (!__hasOwnProp.call(to, key) && key !== except)
@@ -25,7 +25,7 @@ __export(keystone_exports, {
 module.exports = __toCommonJS(keystone_exports);
 var import_core2 = require("@keystone-6/core");
 
-// schema.ts
+// src/keystone/schema.ts
 var import_core = require("@keystone-6/core");
 var import_access = require("@keystone-6/core/access");
 var import_fields = require("@keystone-6/core/fields");
@@ -169,6 +169,9 @@ var keystone_default = withAuth(
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: "sqlite",
       url: "file:./keystone.db"
+    },
+    ui: {
+      basePath: "/admin"
     },
     lists,
     session,

@@ -3,15 +3,34 @@
   "version": "1.0.2",
   "private": true,
   "scripts": {
-    "dev": "keystone dev",
-    "start": "keystone start",
-    "build": "keystone build",
-    "postinstall": "keystone build --no-ui --frozen"
+    "next-dev": "next dev -p 8080",
+    "next-build": "next build",
+    "next-start": "next start -p 8080",
+    "next-lint": "next lint",
+    "keystone-dev": "keystone dev",
+    "keystone-start": "keystone start",
+    "keystone-build": "keystone build",
+    "keystone-postinstall": "keystone build --no-ui --frozen"
   },
   "dependencies": {
     "@keystone-6/auth": "^7.0.0",
     "@keystone-6/core": "^5.0.0",
     "@keystone-6/fields-document": "^7.0.0",
+    "@mantine/core": "^7.5.3",
+    "@mantine/hooks": "^7.5.3",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^4.9.5"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.1.0",
+    "postcss": "^8.4.35",
+    "postcss-preset-mantine": "^1.13.0",
+    "postcss-simple-vars": "^7.0.1"
   }
 }
