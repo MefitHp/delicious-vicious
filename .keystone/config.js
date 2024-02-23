@@ -29,7 +29,6 @@ var import_core2 = require("@keystone-6/core");
 var import_core = require("@keystone-6/core");
 var import_access = require("@keystone-6/core/access");
 var import_fields = require("@keystone-6/core/fields");
-var import_fields_document = require("@keystone-6/fields-document");
 var lists = {
   User: (0, import_core.list)({
     // WARNING
@@ -55,34 +54,39 @@ var lists = {
       })
     }
   }),
-  Galleta: (0, import_core.list)({
+  Producto: (0, import_core.list)({
     // WARNING
     //   for this starter project, anyone can create, query, update and delete anything
     //   if you want to prevent random people on the internet from accessing your data,
     //   you can find out more at https://keystonejs.com/docs/guides/auth-and-access-control
     access: import_access.allowAll,
-    // this is the fields for our Galleta list
+    // this is the fields for our Producto list
     fields: {
       nombre: (0, import_fields.text)({ validation: { isRequired: true } }),
       // the document field can be used for making rich editable content
       //   you can find out more at https://keystonejs.com/docs/guides/document-fields
-      descripcion: (0, import_fields_document.document)({
-        formatting: true,
-        layouts: [
-          [1, 1],
-          [1, 1, 1],
-          [2, 1],
-          [1, 2],
-          [1, 2, 1]
-        ],
-        links: true,
-        dividers: true
-      }),
+      descripcion: (0, import_fields.text)({ validation: { isRequired: true } }),
       precio: (0, import_fields.integer)({
         validation: { isRequired: true }
       }),
       es_visible: (0, import_fields.checkbox)(),
-      imagen: (0, import_fields.image)({ storage: "my_local_images" })
+      imagen: (0, import_fields.image)({ storage: "my_local_images" }),
+      categoria: (0, import_fields.select)({
+        options: [
+          {
+            label: "Cheesecake",
+            value: "cheesecake"
+          },
+          {
+            label: "Galletas",
+            value: "cookie"
+          },
+          {
+            label: "Brownies",
+            value: "brownie"
+          }
+        ]
+      })
     }
   }),
   Order: (0, import_core.list)({

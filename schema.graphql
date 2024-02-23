@@ -111,17 +111,14 @@ input UserCreateInput {
   createdAt: DateTime
 }
 
-type Galleta {
+type Producto {
   id: ID!
   nombre: String
-  descripcion: Galleta_descripcion_Document
+  descripcion: String
   precio: Int
   es_visible: Boolean
   imagen: ImageFieldOutput
-}
-
-type Galleta_descripcion_Document {
-  document(hydrateRelationships: Boolean! = false): JSON!
+  categoria: String
 }
 
 type ImageFieldOutput {
@@ -140,18 +137,20 @@ enum ImageExtension {
   gif
 }
 
-input GalletaWhereUniqueInput {
+input ProductoWhereUniqueInput {
   id: ID
 }
 
-input GalletaWhereInput {
-  AND: [GalletaWhereInput!]
-  OR: [GalletaWhereInput!]
-  NOT: [GalletaWhereInput!]
+input ProductoWhereInput {
+  AND: [ProductoWhereInput!]
+  OR: [ProductoWhereInput!]
+  NOT: [ProductoWhereInput!]
   id: IDFilter
   nombre: StringFilter
+  descripcion: StringFilter
   precio: IntFilter
   es_visible: BooleanFilter
+  categoria: StringNullableFilter
 }
 
 input IntFilter {
@@ -170,19 +169,36 @@ input BooleanFilter {
   not: BooleanFilter
 }
 
-input GalletaOrderByInput {
-  id: OrderDirection
-  nombre: OrderDirection
-  precio: OrderDirection
-  es_visible: OrderDirection
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  not: StringNullableFilter
 }
 
-input GalletaUpdateInput {
+input ProductoOrderByInput {
+  id: OrderDirection
+  nombre: OrderDirection
+  descripcion: OrderDirection
+  precio: OrderDirection
+  es_visible: OrderDirection
+  categoria: OrderDirection
+}
+
+input ProductoUpdateInput {
   nombre: String
-  descripcion: JSON
+  descripcion: String
   precio: Int
   es_visible: Boolean
   imagen: ImageFieldInput
+  categoria: String
 }
 
 input ImageFieldInput {
@@ -192,17 +208,18 @@ input ImageFieldInput {
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
 
-input GalletaUpdateArgs {
-  where: GalletaWhereUniqueInput!
-  data: GalletaUpdateInput!
+input ProductoUpdateArgs {
+  where: ProductoWhereUniqueInput!
+  data: ProductoUpdateInput!
 }
 
-input GalletaCreateInput {
+input ProductoCreateInput {
   nombre: String
-  descripcion: JSON
+  descripcion: String
   precio: Int
   es_visible: Boolean
   imagen: ImageFieldInput
+  categoria: String
 }
 
 type Order {
@@ -230,20 +247,6 @@ input OrderWhereInput {
   referencia: StringFilter
   total_orden: IntFilter
   status: StringNullableFilter
-}
-
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: StringNullableFilter
 }
 
 input OrderOrderByInput {
@@ -291,12 +294,12 @@ type Mutation {
   updateUsers(data: [UserUpdateArgs!]!): [User]
   deleteUser(where: UserWhereUniqueInput!): User
   deleteUsers(where: [UserWhereUniqueInput!]!): [User]
-  createGalleta(data: GalletaCreateInput!): Galleta
-  createGalletas(data: [GalletaCreateInput!]!): [Galleta]
-  updateGalleta(where: GalletaWhereUniqueInput!, data: GalletaUpdateInput!): Galleta
-  updateGalletas(data: [GalletaUpdateArgs!]!): [Galleta]
-  deleteGalleta(where: GalletaWhereUniqueInput!): Galleta
-  deleteGalletas(where: [GalletaWhereUniqueInput!]!): [Galleta]
+  createProducto(data: ProductoCreateInput!): Producto
+  createProductos(data: [ProductoCreateInput!]!): [Producto]
+  updateProducto(where: ProductoWhereUniqueInput!, data: ProductoUpdateInput!): Producto
+  updateProductos(data: [ProductoUpdateArgs!]!): [Producto]
+  deleteProducto(where: ProductoWhereUniqueInput!): Producto
+  deleteProductos(where: [ProductoWhereUniqueInput!]!): [Producto]
   createOrder(data: OrderCreateInput!): Order
   createOrders(data: [OrderCreateInput!]!): [Order]
   updateOrder(where: OrderWhereUniqueInput!, data: OrderUpdateInput!): Order
@@ -329,9 +332,9 @@ type Query {
   users(where: UserWhereInput! = {}, orderBy: [UserOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: UserWhereUniqueInput): [User!]
   user(where: UserWhereUniqueInput!): User
   usersCount(where: UserWhereInput! = {}): Int
-  galletas(where: GalletaWhereInput! = {}, orderBy: [GalletaOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: GalletaWhereUniqueInput): [Galleta!]
-  galleta(where: GalletaWhereUniqueInput!): Galleta
-  galletasCount(where: GalletaWhereInput! = {}): Int
+  productos(where: ProductoWhereInput! = {}, orderBy: [ProductoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductoWhereUniqueInput): [Producto!]
+  producto(where: ProductoWhereUniqueInput!): Producto
+  productosCount(where: ProductoWhereInput! = {}): Int
   orders(where: OrderWhereInput! = {}, orderBy: [OrderOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: OrderWhereUniqueInput): [Order!]
   order(where: OrderWhereUniqueInput!): Order
   ordersCount(where: OrderWhereInput! = {}): Int

@@ -19,10 +19,10 @@ model User {
   createdAt DateTime? @default(now())
 }
 
-model Galleta {
+model Producto {
   id               String  @id @default(cuid())
   nombre           String  @default("")
-  descripcion      String  @default("[{\"type\":\"paragraph\",\"children\":[{\"text\":\"\"}]}]")
+  descripcion      String  @default("")
   precio           Int
   es_visible       Boolean @default(false)
   imagen_filesize  Int?
@@ -30,6 +30,7 @@ model Galleta {
   imagen_width     Int?
   imagen_height    Int?
   imagen_id        String?
+  categoria        String?
 }
 
 model Order {
