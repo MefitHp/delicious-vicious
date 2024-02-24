@@ -165,14 +165,15 @@ var session = (0, import_session.statelessSessions)({
 });
 
 // keystone.ts
+var { DB_USER, DB_PASSWORD } = process.env;
 var keystone_default = withAuth(
   (0, import_core2.config)({
     db: {
       // we're using sqlite for the fastest startup experience
       //   for more information on what database might be appropriate for you
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
-      provider: "sqlite",
-      url: "file:./keystone.db"
+      provider: "postgresql",
+      url: `postgresql://${DB_USER}:${DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`
     },
     ui: {
       basePath: "/admin"

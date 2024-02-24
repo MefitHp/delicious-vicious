@@ -19,6 +19,7 @@
     "@mantine/core": "^7.5.3",
     "@mantine/hooks": "^7.5.3",
     "@prisma/client": "^5.9.1",
+    "@tabler/icons-react": "^2.47.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "graphql-upload": "13.0.0",
