@@ -1,11 +1,13 @@
 import "@mantine/core/styles.css";
 import Head from "next/head";
-import { MantineProvider } from "@mantine/core";
+import { Container, MantineProvider } from "@mantine/core";
+import Nav from "./components/shared/Nav";
 import { theme } from "../../theme";
+import { Footer } from "./components/shared/Footer";
 
 export default function App({ Component, pageProps }: any) {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} defaultColorScheme="dark">
       <Head>
         <title>Delicious Vicious 🍪</title>
         <meta
@@ -14,7 +16,11 @@ export default function App({ Component, pageProps }: any) {
         />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
-      <Component {...pageProps} />
+      <Nav />
+      <Container>
+        <Component {...pageProps} />
+      </Container>
+      <Footer />
     </MantineProvider>
   );
 }
