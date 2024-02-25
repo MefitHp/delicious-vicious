@@ -3,7 +3,9 @@ import { Title } from "@mantine/core";
 export default function IndexPage() {
   return (
     <>
-      <Title order={1}>Delicious Vicious 🍪</Title>
+      <Title c="teal.9" order={1}>
+        Delicious Vicious
+      </Title>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { Container, Group, ActionIcon, rem } from "@mantine/core";
+import { Container, Group, ActionIcon, rem, Paper } from "@mantine/core";
 import {
   IconBrandTwitter,
   IconBrandYoutube,
@@ -8,7 +8,7 @@ import classes from "./Footer.module.css";
 
 export function Footer() {
   return (
-    <div className={classes.footer}>
+    <Paper shadow="sm" className={classes.footer}>
       <Container className={classes.inner}>
         <h3>Delicious Vicious</h3>
         <Group
@@ -37,6 +37,6 @@ export function Footer() {
           </ActionIcon>
         </Group>
       </Container>
-    </div>
+    </Paper>
   );
 }

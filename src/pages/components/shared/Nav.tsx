@@ -1,26 +1,48 @@
-import { Group, Button, Divider, Box, Burger, Drawer } from "@mantine/core";
+import {
+  Group,
+  Button,
+  Divider,
+  Box,
+  Burger,
+  Drawer,
+  Image,
+  Paper,
+  NavLink,
+} from "@mantine/core";
+import NextImage from "next/image";
+import Link from "next/link";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Nav.module.css";
+import BrandLogo from "../../../../public/images/delicious-vicious-logo.png";
+import { IconHome2 } from "@tabler/icons-react";
 
 const Nav = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
 
   return (
-    <Box>
-      <header className={classes.header}>
+    <Box mb={4}>
+      <Paper shadow="md" className={classes.header}>
         <Group justify="space-between" h="100%">
-          <h3>Delicious Vicious</h3>
+          <Group>
+            <Image
+              component={NextImage}
+              src={BrandLogo}
+              h={60}
+              fit="contain"
+              alt="Delicious Vicious"
+            />
+          </Group>
           <Group h="100%" gap={0} visibleFrom="sm">
-            <a href="#" className={classes.link}>
+            <Link href="#" className={classes.link}>
               Inicio
-            </a>
-            <a href="#" className={classes.link}>
+            </Link>
+            <Link href="#munchies" className={classes.link}>
               Munchis
-            </a>
-            <a href="#" className={classes.link}>
+            </Link>
+            <Link href="#contacto" className={classes.link}>
               Contacto
-            </a>
+            </Link>
           </Group>
 
           <Group visibleFrom="sm">
@@ -33,7 +55,7 @@ const Nav = () => {
             hiddenFrom="sm"
           />
         </Group>
-      </header>
+      </Paper>
 
       <Drawer
         opened={drawerOpened}

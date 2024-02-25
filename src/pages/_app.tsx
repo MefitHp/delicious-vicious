@@ -1,13 +1,14 @@
-import "@mantine/core/styles.css";
 import Head from "next/head";
 import { Container, MantineProvider } from "@mantine/core";
-import Nav from "./components/shared/Nav";
+
 import { theme } from "../../theme";
 import { Footer } from "./components/shared/Footer";
+import Nav from "./components/shared/Nav";
+import "@mantine/core/styles.css";
 
 export default function App({ Component, pageProps }: any) {
   return (
-    <MantineProvider theme={theme} defaultColorScheme="dark">
+    <MantineProvider theme={theme}>
       <Head>
         <title>Delicious Vicious 🍪</title>
         <meta
