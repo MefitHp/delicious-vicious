@@ -6,7 +6,7 @@ import {
 } from "@tabler/icons-react";
 import classes from "./Footer.module.css";
 
-export function Footer() {
+export default function Footer() {
   return (
     <Paper shadow="sm" className={classes.footer}>
       <Container className={classes.inner}>

@@ -7,14 +7,12 @@ import {
   Drawer,
   Image,
   Paper,
-  NavLink,
 } from "@mantine/core";
 import NextImage from "next/image";
 import Link from "next/link";
 import { useDisclosure } from "@mantine/hooks";
 import classes from "./Nav.module.css";
-import BrandLogo from "../../../../public/images/delicious-vicious-logo.png";
-import { IconHome2 } from "@tabler/icons-react";
+import BrandLogo from "../../../../../public/images/delicious-vicious-logo.png";
 
 const Nav = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =

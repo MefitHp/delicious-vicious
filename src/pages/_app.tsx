@@ -1,10 +1,11 @@
 import Head from "next/head";
-import { Container, MantineProvider } from "@mantine/core";
+import { MantineProvider } from "@mantine/core";
 
+import { Footer, Nav } from "./components/shared";
 import { theme } from "../../theme";
-import { Footer } from "./components/shared/Footer";
-import Nav from "./components/shared/Nav";
+
 import "@mantine/core/styles.css";
+import "@mantine/carousel/styles.css";
 
 export default function App({ Component, pageProps }: any) {
   return (
@@ -18,9 +19,7 @@ export default function App({ Component, pageProps }: any) {
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
       <Nav />
-      <Container>
-        <Component {...pageProps} />
-      </Container>
+      <Component {...pageProps} />
       <Footer />
     </MantineProvider>
   );

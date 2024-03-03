@@ -174,9 +174,9 @@ var keystone_default = withAuth(
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: "postgresql",
       url: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`,
-      onConnect: async (context) => {
-        await seedDemoData(context);
-      }
+      // onConnect: async (context) => {
+      //   await seedDemoData(context);
+      // }
     },
     ui: {
       basePath: "/admin"

@@ -1,11 +1,36 @@
-import { Title } from "@mantine/core";
+import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 
-export default function IndexPage() {
+import { keystoneContext } from "../keystone/context";
+import { Carousel } from "./components";
+
+export function HomePage({
+  data,
+}: InferGetServerSidePropsType<typeof getServerSideProps>) {
   return (
     <>
-      <Title c="teal.9" order={1}>
-        Delicious Vicious
-      </Title>
+      <Carousel items={data} />
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const context = await keystoneContext.withRequest(req, res);
+  const data = await context.query.Producto.findMany({
+    query: `
+    nombre
+    categoria
+    descripcion
+    imagen {
+      url
+    }
+    `,
+  });
+  console.log({ data });
+  return {
+    props: {
+      data,
+    },
+  };
+};
+
+export default HomePage;
