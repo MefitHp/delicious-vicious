@@ -3,6 +3,8 @@ node_modules
 keystone.db
 *.log
 .next
+*.jpeg
+*.jpg
 
 # Docusaurus cache and generated files
 .docusaurus

@@ -165,7 +165,7 @@ var session = (0, import_session.statelessSessions)({
 });
 
 // keystone.ts
-var { DB_USER, DB_PASSWORD } = process.env;
+var import_config = require("dotenv/config");
 var keystone_default = withAuth(
   (0, import_core2.config)({
     db: {
@@ -173,7 +173,10 @@ var keystone_default = withAuth(
       //   for more information on what database might be appropriate for you
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: "postgresql",
-      url: `postgresql://${DB_USER}:${DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`
+      url: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`,
+      onConnect: async (context) => {
+        await seedDemoData(context);
+      }
     },
     ui: {
       basePath: "/admin"
@@ -198,4 +201,75 @@ var keystone_default = withAuth(
     }
   })
 );
+async function seedDemoData(context) {
+  if (await context.db.Producto.count() > 0)
+    return;
+  for (const desserts of [
+    {
+      nombre: "Brownie de Chocolate",
+      descripcion: "Brownie rico y decadente con una textura densa de chocolate.",
+      precio: 70,
+      es_visible: true,
+      categoria: "brownie"
+    },
+    {
+      nombre: "Brownie de Nueces",
+      descripcion: "Delicioso brownie cargado con nueces crujientes para obtener una textura y sabor extra.",
+      precio: 80,
+      es_visible: true,
+      categoria: "brownie"
+    },
+    {
+      nombre: "Brownie de Caramelo",
+      descripcion: "Brownie indulgente con remolinos de caramelo deliciosamente dulce y pegajoso.",
+      precio: 90,
+      es_visible: true,
+      categoria: "brownie"
+    },
+    {
+      nombre: "Galleta de Mantequilla",
+      descripcion: "Galleta suave y masticable hecha con mantequilla de galleta cremosa para una experiencia de sabor \xFAnica.",
+      precio: 50,
+      es_visible: true,
+      categoria: "cookie"
+    },
+    {
+      nombre: "Galleta de Avena con Pasas",
+      descripcion: "Cl\xE1sica galleta de avena con pasas con un toque de canela para un bocadillo reconfortante.",
+      precio: 40,
+      es_visible: true,
+      categoria: "cookie"
+    },
+    {
+      nombre: "Galleta de Chocolate",
+      descripcion: "Irresistible galleta con chispas de chocolate cargada de trozos de rico chocolate.",
+      precio: 60,
+      es_visible: true,
+      categoria: "cookie"
+    },
+    {
+      nombre: "Cheesecake de Lim\xF3n",
+      descripcion: "Cheesecake cremoso infundido con sabor a lim\xF3n y cubierto con un glaseado de lim\xF3n picante.",
+      precio: 120,
+      es_visible: true,
+      categoria: "cheesecake"
+    },
+    {
+      nombre: "Cheesecake de Chocolate",
+      descripcion: "Cheesecake de chocolate decadente con una base de galleta de chocolate, perfecto para los amantes del chocolate.",
+      precio: 130,
+      es_visible: true,
+      categoria: "cheesecake"
+    },
+    {
+      nombre: "Cheesecake de Fresa",
+      descripcion: "Cheesecake suave y cremoso cubierto con fresas frescas para un toque afrutado.",
+      precio: 140,
+      es_visible: true,
+      categoria: "cheesecake"
+    }
+  ]) {
+    await context.db.Producto.createOne({ data: desserts });
+  }
+}
 //# sourceMappingURL=config.js.map
