@@ -1,24 +1,27 @@
 import { Paper, Text, Title, rem } from "@mantine/core";
-import classes from "./CardsCarousel.module.css";
-import { DessertType } from "../../types";
 import { Carousel } from "@mantine/carousel";
+
+import { DessertType } from "../../types";
+import classes from "./CardsCarousel.module.css";
 
 function Card({ nombre, imagen, categoria }: DessertType) {
   return (
     <Paper
       shadow="md"
       p="xl"
-      radius="md"
       style={{ backgroundImage: `url(${imagen?.url})` }}
       className={classes.card}
     >
       <div className={classes.overlay}>
-        <Text className={classes.category} size="xs">
-          {categoria}
-        </Text>
         <Title order={3} className={classes.title}>
           {nombre}
         </Title>
+        <Text className={classes.category} size="md">
+          {categoria} Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+          Voluptatibus beatae facere praesentium accusamus harum esse maiores
+          non cupiditate mollitia doloribus, aut explicabo sit aliquam sapiente
+          voluptatum ab, blanditiis veniam neque.
+        </Text>
       </div>
     </Paper>
   );
@@ -33,6 +36,7 @@ const CarouselComponent = ({ items }: any) => {
 
   return (
     <Carousel
+      withIndicators
       slideSize={{ base: "100%", sm: "100%" }}
       slideGap={{ base: rem(2), sm: "xl" }}
       align="start"

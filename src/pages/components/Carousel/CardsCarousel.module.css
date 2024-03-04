@@ -1,5 +1,5 @@
 .card {
-  height: rem(700px);
+  height: rem(600px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;

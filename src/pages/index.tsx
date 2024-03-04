@@ -1,10 +1,10 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { SimpleGrid, Box, em, Divider, Flex, Title, Text } from "@mantine/core";
-import { useMediaQuery } from "@mantine/hooks";
+import { SimpleGrid, Box, Flex, Title, Text } from "@mantine/core";
 
 import { keystoneContext } from "../keystone/context";
 import { Carousel } from "./components";
 import classes from "./index.module.css";
+
 const imageUrl =
   "https://media.istockphoto.com/id/497959594/photo/fresh-cakes.jpg?s=612x612&w=0&k=20&c=T1vp7QPbg6BY3GE-qwg-i_SqVpstyHBMIwnGakdTTek=";
 const imageUrl2 =
@@ -14,9 +14,6 @@ const imageUrl3 =
 export function HomePage({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  const isMobile = useMediaQuery(`(max-width: ${em(750)})`);
-  const displayFirst = isMobile ? "-1" : "2";
-
   return (
     <>
       <Carousel items={data} />
