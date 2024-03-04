@@ -19,7 +19,7 @@ const Nav = () => {
     useDisclosure(false);
 
   return (
-    <Box mb={4}>
+    <Box>
       <Paper shadow="md" className={classes.header}>
         <Group justify="space-between" h="100%">
           <Group>
