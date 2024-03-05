@@ -20,7 +20,7 @@ export function HomePage({
       <SimpleGrid cols={{ sm: 2, xs: 1 }} spacing="0">
         <Flex className={classes.card} p="xl" px={80}>
           <Title order={1}>Eat</Title>
-          <Text size="lg">
+          <Text size="xl">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque
             expedita libero tempora aspernatur rem culpa officia, nihil
             praesentium, suscipit nam nesciunt ut maiores iusto deleniti odio
@@ -43,7 +43,7 @@ export function HomePage({
         ></Box>
         <Flex className={classes.card} p="xl" px={80}>
           <Title order={1}>Drink</Title>
-          <Text size="lg">
+          <Text size="xl">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque
             expedita libero tempora aspernatur rem culpa officia, nihil
             praesentium, suscipit nam nesciunt ut maiores iusto deleniti odio
@@ -54,7 +54,7 @@ export function HomePage({
       <SimpleGrid cols={{ sm: 2, xs: 1 }} spacing="0">
         <Flex className={classes.card} p="xl" px={80}>
           <Title order={1}>Enjoy</Title>
-          <Text size="lg">
+          <Text size="xl">
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque
             expedita libero tempora aspernatur rem culpa officia, nihil
             praesentium, suscipit nam nesciunt ut maiores iusto deleniti odio
@@ -74,17 +74,17 @@ export function HomePage({
 
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   const context = await keystoneContext.withRequest(req, res);
-  const data = await context.query.Producto.findMany({
+  const data = await context.query.Portada.findMany({
     query: `
-    nombre
-    categoria
+    titulo
     descripcion
     imagen {
       url
     }
     `,
+    where: { es_visible: { equals: true } },
   });
-  console.log({ data });
+
   return {
     props: {
       data,

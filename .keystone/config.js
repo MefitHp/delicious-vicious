@@ -89,6 +89,15 @@ var lists = {
       })
     }
   }),
+  Portada: (0, import_core.list)({
+    access: import_access.allowAll,
+    fields: {
+      titulo: (0, import_fields.text)({ validation: { isRequired: true } }),
+      descripcion: (0, import_fields.text)({ validation: { isRequired: true } }),
+      es_visible: (0, import_fields.checkbox)(),
+      imagen: (0, import_fields.image)({ storage: "my_local_images" })
+    }
+  }),
   Order: (0, import_core.list)({
     access: import_access.allowAll,
     fields: {

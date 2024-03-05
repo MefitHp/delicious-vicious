@@ -33,6 +33,18 @@ model Producto {
   categoria        String?
 }
 
+model Portada {
+  id               String  @id @default(cuid())
+  titulo           String  @default("")
+  descripcion      String  @default("")
+  es_visible       Boolean @default(false)
+  imagen_filesize  Int?
+  imagen_extension String?
+  imagen_width     Int?
+  imagen_height    Int?
+  imagen_id        String?
+}
+
 model Order {
   id               String  @id @default(cuid())
   nombre_comprador String  @default("")

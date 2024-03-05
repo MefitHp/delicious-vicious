@@ -1,3 +1,4 @@
 import { DessertType } from "./dessertType";
+import { BannerType } from "./bannerType";
 
-export type { DessertType };
+export type { DessertType, BannerType };

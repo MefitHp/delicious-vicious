@@ -1,4 +1,8 @@
-import { MantineColorsTuple, createTheme } from "@mantine/core";
+import {
+  CSSVariablesResolver,
+  MantineColorsTuple,
+  createTheme,
+} from "@mantine/core";
 
 import localFont from "next/font/local";
 
@@ -47,4 +51,15 @@ export const theme = createTheme({
   headings: {
     fontFamily: richMastFont.style.fontFamily,
   },
+  other: {
+    brandGreen: "#37614c",
+  },
+});
+
+export const cssResolver: CSSVariablesResolver = (theme) => ({
+  variables: {
+    "--mantine-brand-green": theme.other.brandGreen,
+  },
+  light: {},
+  dark: {},
 });

@@ -5,6 +5,7 @@ keystone.db
 .next
 *.jpeg
 *.jpg
+*.png
 
 # Docusaurus cache and generated files
 .docusaurus

@@ -2,14 +2,14 @@ import Head from "next/head";
 import { MantineProvider } from "@mantine/core";
 
 import { Footer, Nav } from "./components/shared";
-import { theme } from "../../theme";
+import { cssResolver, theme } from "../../theme";
 
 import "@mantine/core/styles.css";
 import "@mantine/carousel/styles.css";
 
 export default function App({ Component, pageProps }: any) {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} cssVariablesResolver={cssResolver}>
       <Head>
         <title>Delicious Vicious 🍪</title>
         <meta

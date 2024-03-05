@@ -1,10 +1,11 @@
-import { Paper, Text, Title, rem } from "@mantine/core";
+import { Box, Paper, Text, Title, rem } from "@mantine/core";
 import { Carousel } from "@mantine/carousel";
 
-import { DessertType } from "../../types";
+import { BannerType } from "../../types";
+
 import classes from "./CardsCarousel.module.css";
 
-function Card({ nombre, imagen, categoria }: DessertType) {
+function Card({ titulo, imagen, descripcion }: BannerType) {
   return (
     <Paper
       shadow="md"
@@ -13,23 +14,22 @@ function Card({ nombre, imagen, categoria }: DessertType) {
       className={classes.card}
     >
       <div className={classes.overlay}>
-        <Title order={3} className={classes.title}>
-          {nombre}
-        </Title>
-        <Text className={classes.category} size="md">
-          {categoria} Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Voluptatibus beatae facere praesentium accusamus harum esse maiores
-          non cupiditate mollitia doloribus, aut explicabo sit aliquam sapiente
-          voluptatum ab, blanditiis veniam neque.
-        </Text>
+        <Box>
+          <Title order={3} className={classes.title}>
+            {titulo}
+          </Title>
+          <Text className={classes.category} size="md">
+            {descripcion}
+          </Text>
+        </Box>
       </div>
     </Paper>
   );
 }
 
 const CarouselComponent = ({ items }: any) => {
-  const slides = items.map((item: DessertType) => (
-    <Carousel.Slide key={item.nombre}>
+  const slides = items.map((item: BannerType) => (
+    <Carousel.Slide key={item.titulo}>
       <Card {...item} />
     </Carousel.Slide>
   ));

@@ -229,6 +229,54 @@ input ProductoCreateInput {
   categoria: String
 }
 
+type Portada {
+  id: ID!
+  titulo: String
+  descripcion: String
+  es_visible: Boolean
+  imagen: ImageFieldOutput
+}
+
+input PortadaWhereUniqueInput {
+  id: ID
+}
+
+input PortadaWhereInput {
+  AND: [PortadaWhereInput!]
+  OR: [PortadaWhereInput!]
+  NOT: [PortadaWhereInput!]
+  id: IDFilter
+  titulo: StringFilter
+  descripcion: StringFilter
+  es_visible: BooleanFilter
+}
+
+input PortadaOrderByInput {
+  id: OrderDirection
+  titulo: OrderDirection
+  descripcion: OrderDirection
+  es_visible: OrderDirection
+}
+
+input PortadaUpdateInput {
+  titulo: String
+  descripcion: String
+  es_visible: Boolean
+  imagen: ImageFieldInput
+}
+
+input PortadaUpdateArgs {
+  where: PortadaWhereUniqueInput!
+  data: PortadaUpdateInput!
+}
+
+input PortadaCreateInput {
+  titulo: String
+  descripcion: String
+  es_visible: Boolean
+  imagen: ImageFieldInput
+}
+
 type Order {
   id: ID!
   nombre_comprador: String
@@ -307,6 +355,12 @@ type Mutation {
   updateProductos(data: [ProductoUpdateArgs!]!): [Producto]
   deleteProducto(where: ProductoWhereUniqueInput!): Producto
   deleteProductos(where: [ProductoWhereUniqueInput!]!): [Producto]
+  createPortada(data: PortadaCreateInput!): Portada
+  createPortadas(data: [PortadaCreateInput!]!): [Portada]
+  updatePortada(where: PortadaWhereUniqueInput!, data: PortadaUpdateInput!): Portada
+  updatePortadas(data: [PortadaUpdateArgs!]!): [Portada]
+  deletePortada(where: PortadaWhereUniqueInput!): Portada
+  deletePortadas(where: [PortadaWhereUniqueInput!]!): [Portada]
   createOrder(data: OrderCreateInput!): Order
   createOrders(data: [OrderCreateInput!]!): [Order]
   updateOrder(where: OrderWhereUniqueInput!, data: OrderUpdateInput!): Order
@@ -342,6 +396,9 @@ type Query {
   productos(where: ProductoWhereInput! = {}, orderBy: [ProductoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductoWhereUniqueInput): [Producto!]
   producto(where: ProductoWhereUniqueInput!): Producto
   productosCount(where: ProductoWhereInput! = {}): Int
+  portadas(where: PortadaWhereInput! = {}, orderBy: [PortadaOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PortadaWhereUniqueInput): [Portada!]
+  portada(where: PortadaWhereUniqueInput!): Portada
+  portadasCount(where: PortadaWhereInput! = {}): Int
   orders(where: OrderWhereInput! = {}, orderBy: [OrderOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: OrderWhereUniqueInput): [Order!]
   order(where: OrderWhereUniqueInput!): Order
   ordersCount(where: OrderWhereInput! = {}): Int

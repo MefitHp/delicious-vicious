@@ -95,6 +95,16 @@ export const lists: Lists = {
     },
   }),
 
+  Portada: list({
+    access: allowAll,
+    fields: {
+      titulo: text({ validation: { isRequired: true } }),
+      descripcion: text({ validation: { isRequired: true } }),
+      es_visible: checkbox(),
+      imagen: image({ storage: "my_local_images" }),
+    },
+  }),
+
   Order: list({
     access: allowAll,
     fields: {
