@@ -27,6 +27,19 @@ const primaryColor: MantineColorsTuple = [
   "#3f6f57",
 ];
 
+const primaryAlternative: MantineColorsTuple = [
+  "#f2f7f4",
+  "#dfece3",
+  "#c2d8ca",
+  "#99bca7",
+  "#6c9b81",
+  "#4c7d64",
+  "#37614c",
+  "#2d4f3f",
+  "#254033",
+  "#1f352b",
+  "#111d18",
+];
 const greenColor: MantineColorsTuple = [
   "#e5ffe8",
   "#ceffd3",
@@ -44,7 +57,7 @@ export const theme = createTheme({
   /* Put your mantine theme override here */
   primaryColor: "teal",
   colors: {
-    teal: primaryColor,
+    teal: primaryAlternative,
     green: greenColor,
   },
   fontFamily: acuminVariableFont.style.fontFamily,
