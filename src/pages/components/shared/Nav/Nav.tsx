@@ -32,10 +32,10 @@ const Nav = () => {
             />
           </Group>
           <Group h="100%" gap={0} visibleFrom="sm">
-            <Link href="#" className={classes.link}>
+            <Link href="/" className={classes.link}>
               Inicio
             </Link>
-            <Link href="#munchies" className={classes.link}>
+            <Link href="/productos" className={classes.link}>
               Munchis
             </Link>
             <Link href="#contacto" className={classes.link}>
@@ -44,7 +44,9 @@ const Nav = () => {
           </Group>
 
           <Group visibleFrom="sm">
-            <Button>Arma tu Box! 📦</Button>
+            <Link href="/arma-tu-box" className={classes.link}>
+              <Button>Arma tu Box! 📦</Button>
+            </Link>
           </Group>
 
           <Burger
@@ -65,18 +67,20 @@ const Nav = () => {
         zIndex={1000000}
       >
         <Divider my="sm" />
-        <a href="#" className={classes.link}>
-          Home
-        </a>
-        <a href="#" className={classes.link}>
-          Munchies
-        </a>
-        <a href="#" className={classes.link}>
+        <Link href="/" className={classes.link}>
+          Inicio
+        </Link>
+        <Link href="/productos" className={classes.link}>
+          Productos
+        </Link>
+        <Link href="#" className={classes.link}>
           Contacto
-        </a>
+        </Link>
         <Divider my="sm" />
         <Group justify="center" grow pb="xl" px="md">
-          <Button>Arma tu Box! 📦</Button>
+          <Link href="/arma-tu-box" className={classes.link}>
+            <Button>Arma tu Box! 📦</Button>
+          </Link>
         </Group>
       </Drawer>
     </Box>
