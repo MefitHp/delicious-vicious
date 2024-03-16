@@ -1,0 +1,19 @@
+.button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  transition: background-color 150ms ease, border-color 150ms ease;
+  border-radius: var(--mantine-radius-sm);
+  padding: var(--mantine-spacing-md);
+  border: 1px solid var(--mantine-color-gray-3);
+
+  &[data-checked] {
+    border-color: var(--mantine-brand-green);
+  }
+}
+
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
