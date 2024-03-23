@@ -4,13 +4,13 @@ import { SimpleGrid, Box, Flex, Title, Text } from "@mantine/core";
 import { keystoneContext } from "../keystone/context";
 import { Carousel } from "./components";
 import classes from "./index.module.css";
+import image1 from "../../public/images/close_box_with_cookies_outside.jpg";
+import image2 from "../../public/images/single_sliced_cookie_with_logo.jpg";
+import image3 from "../../public/images/box_with_cookies_inside.jpg";
 
-const imageUrl =
-  "https://media.istockphoto.com/id/497959594/photo/fresh-cakes.jpg?s=612x612&w=0&k=20&c=T1vp7QPbg6BY3GE-qwg-i_SqVpstyHBMIwnGakdTTek=";
-const imageUrl2 =
-  "https://as1.ftcdn.net/v2/jpg/00/96/19/86/1000_F_96198695_oyJg0I7ELpXI6608FI942PX9LlRRyEnd.jpg";
-const imageUrl3 =
-  "https://as2.ftcdn.net/v2/jpg/01/55/53/79/1000_F_155537960_B4spCfhP8dSCIZwrHyR6XtcQNsliYG7Z.jpg";
+const imageUrl = image1.src;
+const imageUrl2 = image2.src;
+const imageUrl3 = image3.src;
 export function HomePage({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {

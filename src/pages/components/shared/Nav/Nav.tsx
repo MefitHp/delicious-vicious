@@ -36,7 +36,7 @@ const Nav = () => {
               Inicio
             </Link>
             <Link href="/productos" className={classes.link}>
-              Munchis
+              Produtos
             </Link>
             <Link href="#contacto" className={classes.link}>
               Contacto

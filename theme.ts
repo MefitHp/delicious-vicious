@@ -2,6 +2,7 @@ import {
   CSSVariablesResolver,
   MantineColorsTuple,
   createTheme,
+  Title,
 } from "@mantine/core";
 
 import localFont from "next/font/local";
@@ -15,19 +16,6 @@ const richMastFont = localFont({
 });
 
 const primaryColor: MantineColorsTuple = [
-  "#f2f8f5",
-  "#e6ece9",
-  "#c7d9d0",
-  "#a5c5b5",
-  "#89b49e",
-  "#77a98f",
-  "#6ca487",
-  "#5b8f74",
-  "#4f8067",
-  "#3f6f57",
-];
-
-const primaryAlternative: MantineColorsTuple = [
   "#f2f7f4",
   "#dfece3",
   "#c2d8ca",
@@ -56,8 +44,17 @@ const greenColor: MantineColorsTuple = [
 export const theme = createTheme({
   /* Put your mantine theme override here */
   primaryColor: "teal",
+  components: {
+    Title: Title.extend({
+      styles: {
+        root: {
+          color: "#37614c",
+        },
+      },
+    }),
+  },
   colors: {
-    teal: primaryAlternative,
+    teal: primaryColor,
     green: greenColor,
   },
   fontFamily: acuminVariableFont.style.fontFamily,
@@ -66,12 +63,14 @@ export const theme = createTheme({
   },
   other: {
     brandGreen: "#37614c",
+    brandLightGreen: "#92ff9f",
   },
 });
 
 export const cssResolver: CSSVariablesResolver = (theme) => ({
   variables: {
     "--mantine-brand-green": theme.other.brandGreen,
+    "--mantine-brand-light-green": theme.other.brandLightGreen,
   },
   light: {},
   dark: {},
