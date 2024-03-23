@@ -4,5 +4,8 @@ export type DessertType = {
   imagen: { url: string };
   precio: number;
   es_visible: boolean;
-  categoria: "cheesecake" | "cookie" | "brownie";
+  categoria: {
+    id: number;
+    nombre: string;
+  };
 };

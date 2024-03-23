@@ -71,21 +71,25 @@ var lists = {
       }),
       es_visible: (0, import_fields.checkbox)(),
       imagen: (0, import_fields.image)({ storage: "my_local_images" }),
-      categoria: (0, import_fields.select)({
-        options: [
-          {
-            label: "Cheesecake",
-            value: "cheesecake"
-          },
-          {
-            label: "Galletas",
-            value: "cookie"
-          },
-          {
-            label: "Brownies",
-            value: "brownie"
-          }
-        ]
+      categoria: (0, import_fields.relationship)({
+        ref: "Categoria.productos",
+        ui: {
+          displayMode: "select",
+          labelField: "nombre"
+        }
+      })
+    }
+  }),
+  Categoria: (0, import_core.list)({
+    access: import_access.allowAll,
+    fields: {
+      nombre: (0, import_fields.text)({ validation: { isRequired: true } }),
+      productos: (0, import_fields.relationship)({
+        ref: "Producto.categoria",
+        many: true,
+        ui: {
+          labelField: "nombre"
+        }
       })
     }
   }),
@@ -183,6 +187,9 @@ var keystone_default = withAuth(
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: "postgresql",
       url: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`
+      // onConnect: async (keystoneContext) => {
+      //   seedDemoData(keystoneContext);
+      // },
     },
     ui: {
       basePath: "/admin"

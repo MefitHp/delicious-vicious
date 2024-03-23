@@ -23,6 +23,9 @@ export default withAuth(
       //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: "postgresql",
       url: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`,
+      // onConnect: async (keystoneContext) => {
+      //   seedDemoData(keystoneContext);
+      // },
     },
     ui: {
       basePath: "/admin",
@@ -49,6 +52,7 @@ export default withAuth(
 );
 
 import type { Context } from ".keystone/types";
+import { keystoneContext } from "./src/keystone/context";
 
 async function seedDemoData(context: Context) {
   if ((await context.db.Producto.count()) > 0) return;
@@ -60,7 +64,7 @@ async function seedDemoData(context: Context) {
         "Brownie rico y decadente con una textura densa de chocolate.",
       precio: 70,
       es_visible: true,
-      categoria: "brownie",
+      // categoria: "brownie",
     },
     {
       nombre: "Brownie de Nueces",
@@ -68,7 +72,7 @@ async function seedDemoData(context: Context) {
         "Delicioso brownie cargado con nueces crujientes para obtener una textura y sabor extra.",
       precio: 80,
       es_visible: true,
-      categoria: "brownie",
+      // categoria: "brownie",
     },
     {
       nombre: "Brownie de Caramelo",
@@ -76,7 +80,7 @@ async function seedDemoData(context: Context) {
         "Brownie indulgente con remolinos de caramelo deliciosamente dulce y pegajoso.",
       precio: 90,
       es_visible: true,
-      categoria: "brownie",
+      // categoria: "brownie",
     },
     {
       nombre: "Galleta de Mantequilla",
@@ -84,7 +88,7 @@ async function seedDemoData(context: Context) {
         "Galleta suave y masticable hecha con mantequilla de galleta cremosa para una experiencia de sabor única.",
       precio: 50,
       es_visible: true,
-      categoria: "cookie",
+      // categoria: "cookie",
     },
     {
       nombre: "Galleta de Avena con Pasas",
@@ -92,7 +96,7 @@ async function seedDemoData(context: Context) {
         "Clásica galleta de avena con pasas con un toque de canela para un bocadillo reconfortante.",
       precio: 40,
       es_visible: true,
-      categoria: "cookie",
+      // categoria: "cookie",
     },
     {
       nombre: "Galleta de Chocolate",
@@ -100,7 +104,7 @@ async function seedDemoData(context: Context) {
         "Irresistible galleta con chispas de chocolate cargada de trozos de rico chocolate.",
       precio: 60,
       es_visible: true,
-      categoria: "cookie",
+      // categoria: "cookie",
     },
     {
       nombre: "Cheesecake de Limón",
@@ -108,7 +112,7 @@ async function seedDemoData(context: Context) {
         "Cheesecake cremoso infundido con sabor a limón y cubierto con un glaseado de limón picante.",
       precio: 120,
       es_visible: true,
-      categoria: "cheesecake",
+      // categoria: "cheesecake",
     },
     {
       nombre: "Cheesecake de Chocolate",
@@ -116,7 +120,7 @@ async function seedDemoData(context: Context) {
         "Cheesecake de chocolate decadente con una base de galleta de chocolate, perfecto para los amantes del chocolate.",
       precio: 130,
       es_visible: true,
-      categoria: "cheesecake",
+      // categoria: "cheesecake",
     },
     {
       nombre: "Cheesecake de Fresa",
@@ -124,7 +128,7 @@ async function seedDemoData(context: Context) {
         "Cheesecake suave y cremoso cubierto con fresas frescas para un toque afrutado.",
       precio: 140,
       es_visible: true,
-      categoria: "cheesecake",
+      // categoria: "cheesecake",
     },
   ] as const) {
     await context.db.Producto.createOne({ data: desserts });

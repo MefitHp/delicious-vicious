@@ -18,6 +18,7 @@ import {
   checkbox,
   image,
   select,
+  relationship,
 } from "@keystone-6/core/fields";
 
 // the document field is a more complicated field, so it has it's own package
@@ -76,21 +77,26 @@ export const lists: Lists = {
       }),
       es_visible: checkbox(),
       imagen: image({ storage: "my_local_images" }),
-      categoria: select({
-        options: [
-          {
-            label: "Cheesecake",
-            value: "cheesecake",
-          },
-          {
-            label: "Galletas",
-            value: "cookie",
-          },
-          {
-            label: "Brownies",
-            value: "brownie",
-          },
-        ],
+      categoria: relationship({
+        ref: "Categoria.productos",
+        ui: {
+          displayMode: "select",
+          labelField: "nombre",
+        },
+      }),
+    },
+  }),
+
+  Categoria: list({
+    access: allowAll,
+    fields: {
+      nombre: text({ validation: { isRequired: true } }),
+      productos: relationship({
+        ref: "Producto.categoria",
+        many: true,
+        ui: {
+          labelField: "nombre",
+        },
       }),
     },
   }),

@@ -124,7 +124,7 @@ type Producto {
   precio: Int
   es_visible: Boolean
   imagen: ImageFieldOutput
-  categoria: String
+  categoria: Categoria
 }
 
 type ImageFieldOutput {
@@ -156,7 +156,7 @@ input ProductoWhereInput {
   descripcion: StringFilter
   precio: IntFilter
   es_visible: BooleanFilter
-  categoria: StringNullableFilter
+  categoria: CategoriaWhereInput
 }
 
 input IntFilter {
@@ -175,28 +175,12 @@ input BooleanFilter {
   not: BooleanFilter
 }
 
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  mode: QueryMode
-  not: StringNullableFilter
-}
-
 input ProductoOrderByInput {
   id: OrderDirection
   nombre: OrderDirection
   descripcion: OrderDirection
   precio: OrderDirection
   es_visible: OrderDirection
-  categoria: OrderDirection
 }
 
 input ProductoUpdateInput {
@@ -205,7 +189,7 @@ input ProductoUpdateInput {
   precio: Int
   es_visible: Boolean
   imagen: ImageFieldInput
-  categoria: String
+  categoria: CategoriaRelateToOneForUpdateInput
 }
 
 input ImageFieldInput {
@@ -214,6 +198,12 @@ input ImageFieldInput {
 
 """The `Upload` scalar type represents a file upload."""
 scalar Upload
+
+input CategoriaRelateToOneForUpdateInput {
+  create: CategoriaCreateInput
+  connect: CategoriaWhereUniqueInput
+  disconnect: Boolean
+}
 
 input ProductoUpdateArgs {
   where: ProductoWhereUniqueInput!
@@ -226,7 +216,70 @@ input ProductoCreateInput {
   precio: Int
   es_visible: Boolean
   imagen: ImageFieldInput
-  categoria: String
+  categoria: CategoriaRelateToOneForCreateInput
+}
+
+input CategoriaRelateToOneForCreateInput {
+  create: CategoriaCreateInput
+  connect: CategoriaWhereUniqueInput
+}
+
+type Categoria {
+  id: ID!
+  nombre: String
+  productos(where: ProductoWhereInput! = {}, orderBy: [ProductoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductoWhereUniqueInput): [Producto!]
+  productosCount(where: ProductoWhereInput! = {}): Int
+}
+
+input CategoriaWhereUniqueInput {
+  id: ID
+}
+
+input CategoriaWhereInput {
+  AND: [CategoriaWhereInput!]
+  OR: [CategoriaWhereInput!]
+  NOT: [CategoriaWhereInput!]
+  id: IDFilter
+  nombre: StringFilter
+  productos: ProductoManyRelationFilter
+}
+
+input ProductoManyRelationFilter {
+  every: ProductoWhereInput
+  some: ProductoWhereInput
+  none: ProductoWhereInput
+}
+
+input CategoriaOrderByInput {
+  id: OrderDirection
+  nombre: OrderDirection
+}
+
+input CategoriaUpdateInput {
+  nombre: String
+  productos: ProductoRelateToManyForUpdateInput
+}
+
+input ProductoRelateToManyForUpdateInput {
+  disconnect: [ProductoWhereUniqueInput!]
+  set: [ProductoWhereUniqueInput!]
+  create: [ProductoCreateInput!]
+  connect: [ProductoWhereUniqueInput!]
+}
+
+input CategoriaUpdateArgs {
+  where: CategoriaWhereUniqueInput!
+  data: CategoriaUpdateInput!
+}
+
+input CategoriaCreateInput {
+  nombre: String
+  productos: ProductoRelateToManyForCreateInput
+}
+
+input ProductoRelateToManyForCreateInput {
+  create: [ProductoCreateInput!]
+  connect: [ProductoWhereUniqueInput!]
 }
 
 type Portada {
@@ -304,6 +357,21 @@ input OrderWhereInput {
   status: StringNullableFilter
 }
 
+input StringNullableFilter {
+  equals: String
+  in: [String!]
+  notIn: [String!]
+  lt: String
+  lte: String
+  gt: String
+  gte: String
+  contains: String
+  startsWith: String
+  endsWith: String
+  mode: QueryMode
+  not: StringNullableFilter
+}
+
 input OrderOrderByInput {
   id: OrderDirection
   nombre_comprador: OrderDirection
@@ -355,6 +423,12 @@ type Mutation {
   updateProductos(data: [ProductoUpdateArgs!]!): [Producto]
   deleteProducto(where: ProductoWhereUniqueInput!): Producto
   deleteProductos(where: [ProductoWhereUniqueInput!]!): [Producto]
+  createCategoria(data: CategoriaCreateInput!): Categoria
+  createCategorias(data: [CategoriaCreateInput!]!): [Categoria]
+  updateCategoria(where: CategoriaWhereUniqueInput!, data: CategoriaUpdateInput!): Categoria
+  updateCategorias(data: [CategoriaUpdateArgs!]!): [Categoria]
+  deleteCategoria(where: CategoriaWhereUniqueInput!): Categoria
+  deleteCategorias(where: [CategoriaWhereUniqueInput!]!): [Categoria]
   createPortada(data: PortadaCreateInput!): Portada
   createPortadas(data: [PortadaCreateInput!]!): [Portada]
   updatePortada(where: PortadaWhereUniqueInput!, data: PortadaUpdateInput!): Portada
@@ -396,6 +470,9 @@ type Query {
   productos(where: ProductoWhereInput! = {}, orderBy: [ProductoOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductoWhereUniqueInput): [Producto!]
   producto(where: ProductoWhereUniqueInput!): Producto
   productosCount(where: ProductoWhereInput! = {}): Int
+  categorias(where: CategoriaWhereInput! = {}, orderBy: [CategoriaOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: CategoriaWhereUniqueInput): [Categoria!]
+  categoria(where: CategoriaWhereUniqueInput!): Categoria
+  categoriasCount(where: CategoriaWhereInput! = {}): Int
   portadas(where: PortadaWhereInput! = {}, orderBy: [PortadaOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: PortadaWhereUniqueInput): [Portada!]
   portada(where: PortadaWhereUniqueInput!): Portada
   portadasCount(where: PortadaWhereInput! = {}): Int
