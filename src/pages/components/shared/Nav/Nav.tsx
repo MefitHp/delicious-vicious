@@ -1,22 +1,25 @@
 import {
-  Group,
-  Button,
-  Divider,
   Box,
   Burger,
+  Button,
+  Divider,
   Drawer,
+  Group,
   Image,
   Paper,
 } from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
 import NextImage from "next/image";
 import Link from "next/link";
-import { useDisclosure } from "@mantine/hooks";
-import classes from "./Nav.module.css";
+import { usePathname } from "next/navigation";
+
 import BrandLogo from "../../../../../public/images/delicious-vicious-logo.png";
+import classes from "./Nav.module.css";
 
 const Nav = () => {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
+  const currentPath = usePathname();
 
   return (
     <Box>
@@ -32,13 +35,28 @@ const Nav = () => {
             />
           </Group>
           <Group h="100%" gap={0} visibleFrom="sm">
-            <Link href="/" className={classes.link}>
+            <Link
+              href="/"
+              className={
+                currentPath === "/" ? classes.linkActive : classes.link
+              }
+            >
               Inicio
             </Link>
-            <Link href="/productos" className={classes.link}>
+            <Link
+              href="/productos"
+              className={
+                currentPath === "/productos" ? classes.linkActive : classes.link
+              }
+            >
               Produtos
             </Link>
-            <Link href="#contacto" className={classes.link}>
+            <Link
+              href="#contacto"
+              className={
+                currentPath === "/contacto" ? classes.linkActive : classes.link
+              }
+            >
               Contacto
             </Link>
           </Group>
