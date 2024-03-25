@@ -4,13 +4,8 @@ import { SimpleGrid, Box, Flex, Title, Text } from "@mantine/core";
 import { keystoneContext } from "../keystone/context";
 import { Carousel } from "./components";
 import classes from "./index.module.css";
-import image1 from "../../public/images/close_box_with_cookies_outside.jpg";
-import image2 from "../../public/images/single_sliced_cookie_with_logo.jpg";
-import image3 from "../../public/images/box_with_cookies_inside.jpg";
 
-const imageUrl = image1.src;
-const imageUrl2 = image2.src;
-const imageUrl3 = image3.src;
+const bucketStaticPath = "https://delicious-vicious.s3.amazonaws.com/static";
 export function HomePage({
   data,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
@@ -30,7 +25,7 @@ export function HomePage({
         <Box
           className={classes.imageCard}
           style={{
-            backgroundImage: `url("${imageUrl}")`,
+            backgroundImage: `url("${bucketStaticPath}/COOKIE_BOX_CLOSED.jpg")`,
           }}
         />
       </SimpleGrid>
@@ -38,9 +33,9 @@ export function HomePage({
         <Box
           className={classes.imageCard}
           style={{
-            backgroundImage: `url("${imageUrl2}")`,
+            backgroundImage: `url("${bucketStaticPath}/COOKIE_BOX_CLOSEUP.jpg")`,
           }}
-        ></Box>
+        />
         <Flex className={classes.card} p="xl" px={80}>
           <Title order={1}>Drink</Title>
           <Text size="xl">
@@ -64,7 +59,7 @@ export function HomePage({
         <Box
           className={classes.imageCard}
           style={{
-            backgroundImage: `url("${imageUrl3}")`,
+            backgroundImage: `url("${bucketStaticPath}/LOGO_WITH_CAT.jpg")`,
           }}
         />
       </SimpleGrid>

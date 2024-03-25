@@ -5,7 +5,7 @@ import { BannerType } from "../../../types";
 
 import classes from "./CardsCarousel.module.css";
 
-function Card({ titulo, imagen, descripcion }: BannerType) {
+function Card({ imagen }: BannerType) {
   return (
     <Paper
       shadow="md"

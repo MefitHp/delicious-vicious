@@ -15,12 +15,17 @@ import { lists } from "./src/keystone/schema";
 import { withAuth, session } from "./auth";
 import "dotenv/config";
 
+const {
+  S3_BUCKET_NAME: bucketName,
+  S3_REGION: region,
+  S3_ACCESS_KEY_ID: accessKeyId,
+  S3_SECRET_ACCESS_KEY: secretAccessKey,
+  ASSET_BASE_URL: baseUrl,
+} = process.env;
+
 export default withAuth(
   config({
     db: {
-      // we're using sqlite for the fastest startup experience
-      //   for more information on what database might be appropriate for you
-      //   see https://keystonejs.com/docs/guides/choosing-a-database#title
       provider: "postgresql",
       url: `postgresql://${process.env.DB_USER}:${process.env.DB_PASSWORD}@ep-billowing-star-a584btzx.us-east-2.aws.neon.tech/delicious-vicious-dev?sslmode=require`,
       // onConnect: async (keystoneContext) => {
@@ -46,6 +51,16 @@ export default withAuth(
           path: "/images",
         },
         storagePath: "public/images",
+      },
+      delicious_vicious_bucket: {
+        kind: "s3",
+        type: "image",
+        bucketName: bucketName ? bucketName : "dev-bucket",
+        region: region ? region : "global",
+        accessKeyId,
+        secretAccessKey,
+        // The S3 links will be signed so they remain private
+        signed: { expiry: 5000 },
       },
     },
   })

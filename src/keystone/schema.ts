@@ -76,7 +76,7 @@ export const lists: Lists = {
         validation: { isRequired: true },
       }),
       es_visible: checkbox(),
-      imagen: image({ storage: "my_local_images" }),
+      imagen: image({ storage: "delicious_vicious_bucket" }),
       categoria: relationship({
         ref: "Categoria.productos",
         ui: {
@@ -107,7 +107,7 @@ export const lists: Lists = {
       titulo: text({ validation: { isRequired: true } }),
       descripcion: text({ validation: { isRequired: true } }),
       es_visible: checkbox(),
-      imagen: image({ storage: "my_local_images" }),
+      imagen: image({ storage: "delicious_vicious_bucket" }),
     },
   }),
 

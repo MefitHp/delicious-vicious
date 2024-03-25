@@ -30,8 +30,8 @@ const Product = ({
         <Image
           className={classNames.productImage}
           src={imagen?.url}
-          sizes="500px"
           fill
+          sizes="(max-width: 768px) 80vh, (max-width: 1200px) 50vw, 33vw"
           alt={nombre}
         />
       </Box>

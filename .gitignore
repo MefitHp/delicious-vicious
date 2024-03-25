@@ -33,3 +33,4 @@ keystone.db
 .pnp.*
 
 .DS_Store
+*.env
